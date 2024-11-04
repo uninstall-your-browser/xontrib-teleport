@@ -107,6 +107,7 @@ def _main(_args: list[str] = None):
     _check_args(args)
 
     current_dir = Path().absolute()
+    name = args.name or current_dir.name.lower()
 
     if args.add:
         if not args.overwrite and store.exists(args.name):
@@ -114,7 +115,6 @@ def _main(_args: list[str] = None):
                 "[red]💢 a destination with that name already exists! pass [bold]--overwrite[/bold] or [bold]-o[/bold] to ignore"
             )
         else:
-            name = args.name or current_dir.name.lower()
             directory = args.directory or current_dir
 
             store.add(Destination(name=name, directory=directory))
@@ -122,13 +122,13 @@ def _main(_args: list[str] = None):
 
             print(f"Added [bold]{name}[/bold] as {directory}")
     elif args.remove:
-        if not store.exists(args.name):
+        if not store.exists(name):
             print("[red]💢 no destination with that name exists")
         else:
-            store.remove(args.name)
+            store.remove(name)
             store.save()
 
-            print(f"🗑️ Removed [bold]{args.name}'[bold]")
+            print(f"🗑️ Removed [bold]{name}'[bold]")
     elif args.prune:
         prune_list = store.prune()
         store.save()
