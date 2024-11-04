@@ -135,7 +135,7 @@ def _main(_args: list[str] = None):
 
         for pruned in prune_list:
             print(
-                f"🗑️ Removed [bold]{pruned.name}'[bold] ([red]{pruned.directory}[/red])"
+                f"🗑️ Removed [bold]{pruned.name}[bold] ([red]{pruned.directory}[/red])"
             )
     elif args.clear:
         store.clear()
