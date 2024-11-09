@@ -12,7 +12,7 @@ from teleport_core.store import Destination
 
 __all__ = ()
 
-parser = ArgumentParser(prog="teleport")
+parser = ArgumentParser(prog="teleport", description="teleport around your system")
 parser.add_argument(
     "name",
     nargs="?",
@@ -110,7 +110,7 @@ def _main(_args: list[str] = None):
     name = args.name or current_dir.name.lower()
 
     if args.add:
-        if not args.overwrite and store.exists(args.name):
+        if not args.overwrite and store.exists(name):
             print(
                 "[red]💢 a destination with that name already exists! pass [bold]--overwrite[/bold] or [bold]-o[/bold] to ignore"
             )
@@ -157,9 +157,8 @@ def _main(_args: list[str] = None):
                 print(
                     "[red]⛔️ the directory for that destination does not exist. use [bold]--prune[/bold] to remove dangling destinations"
                 )
-                return
-
-            os.chdir(dest)
+            else:
+                os.chdir(dest)
 
 
 def _check_args(args: Args) -> None:

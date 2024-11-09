@@ -4,7 +4,7 @@ packages = [
  { include = "xontrib" }
 ]
 name = "xontrib-teleport"
-version = "0.1.1a"
+version = "0.1.1b"
 description = ""
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
